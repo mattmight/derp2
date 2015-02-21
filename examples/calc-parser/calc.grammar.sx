@@ -1,0 +1,10 @@
+{[exp      ($--> (seq term (rep (seq (or "+" "-") term)))
+                 (process-binops ($ 1) ($ 2)))]
+
+ [term     ($--> (seq factor (rep (seq (or "*" "/") factor)))
+                 (process-binops ($ 1) ($ 2)))]
+
+ [factor   (or ($--> (seq "(" exp ")")
+                     ($ 2))
+               'NUM)]}
+
