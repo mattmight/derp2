@@ -8,6 +8,11 @@ compilers class.
 in context-free grammars down to the simplified Backus-Naur Form suitable for use
 in parsing tools like Racket's `parser-tools/yacc` or `parser-tools/cfg-parser`.
 
+## Documentation
+
+The pattern forms available in the tool are documented in [a blog post on
+desugaring regular operations in context-free grammars](http://matt.might.net/articles/regular-context-free-grammars/).
+
 
 ## Building
 
