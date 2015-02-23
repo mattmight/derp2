@@ -215,7 +215,7 @@
       [`(cdr ,exp)
        `($--> (seq ,(desugar-exp exp)) (cdr ($ 1)))]
       
-      [`(syntax ,args)
+      [(or `(syntax ,args) `(quasisyntax ,args))
        ;=>
        (define (desugar-quoted exp position)
          (match exp
@@ -532,7 +532,7 @@
 (match (current-command-line-arguments)
   
   [(vector "--drracket")
-   (set! grammar-input-file "my-python.grammar.sx")
+   (set! grammar-input-file "default.grammar.sx")
    (set! grammar-input-port (open-input-file grammar-input-file))]
   
   [(vector file-name)
