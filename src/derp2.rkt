@@ -198,7 +198,7 @@
        `($--> ,(desugar-exp exp) . ,body)]
       
       [`(@--> ,exp ,fn)
-       `($--> (seq ,exp) (apply fn ($ 1)))]
+       `($--> (seq ,exp) (apply ,fn ($ 1)))]
       
       [`(>--> ,exp . ,match-clauses)
        `($--> (seq ,exp) . (match ($ 1) . ,match-clauses))]
