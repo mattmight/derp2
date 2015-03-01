@@ -5,7 +5,7 @@ all: bin/derp2
 bin:
 	mkdir bin
 
-bin/derp2: bin
+bin/derp2: bin src/derp2.rkt
 	raco exe -o bin/derp2 src/derp2.rkt 
 
 install: bin/derp2
