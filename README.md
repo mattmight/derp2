@@ -16,42 +16,15 @@ desugaring regular operations in context-free grammars](http://matt.might.net/ar
 
 ## Building
 
-To build, run `make`.
-
-
-## Installing
-
-To install in `/usr/local/bin`, run `sudo make install`.
-
-To install elsewhere run:
-
-```
-$ make install INSTALLDIR=/path/to/dir
-```
-
+To build and install as a racket collection, run `raco pkg install`.
 
 ## Usage
 
-To convert a derp-compatible S-Expression grammar into a yacc-compatible
-S-Expression grammar, run `derp2`:
-
 ```
-$ derp2 foo.grammar.sx  # produces foo.yacc.sx
+(require derp2)
+
+(derp2-parser
+  ...)
 ```
 
-At the moment, you need to concatenate the `.yacc.sx` file into the proper
-place within a `cfg-parser` specification.
-
-For an example of how to do this, look at `examples/calc-parser`.
-
-
-## TODO
-
- + Allow a `--grammar` flag which takes a `cfg-parser`-like specification, but
-   with derp-style rules, and outputs a `cfg-parser` specification.  This would
-   allow using `(include filename)` instead of concatenating items together.
-
- + Create a `derp-parser` macro that uses these transforms internally.  Then
-   there would be no need to use the `include` mechanism either.
-
-
+Use `derp2-parser` like [cfg-parser](http://docs.racket-lang.org/parser-tools/Context-Free_Parsers.html), but place derp-style rules in the `(grammar)` section.

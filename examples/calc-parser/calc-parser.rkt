@@ -1,5 +1,7 @@
 #lang racket
 
+(require derp2)
+
 ; An example calculator-langugae parser using derp2
 
 ; Given an input like:
@@ -30,12 +32,12 @@
 
     ["("            (|token-(|)]
     [")"            (|token-)|)]
-    
+
     ["*"            (token-*)]
     ["+"            (token-+)]
     ["-"            (token--)]
     ["/"            (token-/)]
-    
+
     [(eof)          (token-EOF)]
 
     ))
@@ -45,10 +47,9 @@
   (calc-lexer port))
 
 
-
 ;; Parsing
 (define (process-binops base ops)
-  (match ops 
+  (match ops
     ['()
      base]
 
@@ -57,13 +58,25 @@
 
 
 (define calc-parser
-  (cfg-parser 
+  (derp2-parser
 
     (tokens LIT PUNCT END)
-    
+
     (start exp)
 
     (end EOF)
-    
+
     (grammar
-     
+      [exp      ($--> (seq term (rep (seq (or "+" "-") term)))
+                      (process-binops ($ 1) ($ 2)))]
+
+      [term     ($--> (seq factor (rep (seq (or "*" "/") factor)))
+                      (process-binops ($ 1) ($ 2)))]
+
+      [factor   (or ($--> (seq "(" exp ")")
+                          ($ 2))
+                    'NUM)]
+      )))
+
+(write (calc-parser (calc-token-generator (current-input-port))))
+(newline)
