@@ -22,6 +22,9 @@ To build and install as a racket collection, run `raco pkg install`.
 
 ```
 (require derp2)
+
+(derp2-parser
+  ...)
 ```
 
-Use like [cfg-parser](http://docs.racket-lang.org/parser-tools/Context-Free_Parsers.html), but place derp-style rules in the `(grammar)` section.
+Use `derp2-parser` like [cfg-parser](http://docs.racket-lang.org/parser-tools/Context-Free_Parsers.html), but place derp-style rules in the `(grammar)` section.
